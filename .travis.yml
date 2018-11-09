@@ -24,8 +24,7 @@ install:
   - git clone https://github.com/profi200/Project_CTR.git && cd Project_CTR/makerom
   - make && sudo cp makerom /opt/devkitpro/devkitARM/bin/makerom
   - cd ../.. && rm -rf Project_CTR
-  - ls -l /opt/devkitpro/portlibs/3ds/include/opus/
-
+  
 script:
   - cd $TRAVIS_BUILD_DIR
   - sh .travis/build.sh
