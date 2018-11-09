@@ -10,6 +10,13 @@ before_install:
   - wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
   - sudo dpkg -i devkitpro-pacman.deb
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libstdc++-4.9-dev
+
 install:
   - sudo dkp-pacman -Syu 3ds-dev --noconfirm --needed
   - sudo dkp-pacman -Syu 3ds-curl --noconfirm --force
@@ -24,12 +31,11 @@ install:
   - git clone https://github.com/profi200/Project_CTR.git && cd Project_CTR/makerom
   - make && sudo cp makerom /opt/devkitpro/devkitARM/bin/makerom
   - cd ../.. && rm -rf Project_CTR
-  - ls -l
 
 script:
   - cd $TRAVIS_BUILD_DIR
   - sh .travis/build.sh
-  
+
 deploy:
   provider: pages
   skip_cleanup: true
